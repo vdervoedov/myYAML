@@ -55,35 +55,35 @@ stages:
         ArtifactName: 'drop'
         publishLocation: 'Container'
 
-- stage: TestDeployment
-  jobs:
-  - job: PublishTheCode
-    steps:
-    - task: DownloadBuildArtifacts@0
-      inputs:
-        buildType: 'current'
-        downloadType: 'single'
-        artifactName: 'drop'
-        downloadPath: '$(System.ArtifactsDirectory)'
+# - stage: TestDeployment
+#   jobs:
+#   - job: PublishTheCode
+#     steps:
+#     - task: DownloadBuildArtifacts@0
+#       inputs:
+#         buildType: 'current'
+#         downloadType: 'single'
+#         artifactName: 'drop'
+#         downloadPath: '$(System.ArtifactsDirectory)'
 
-    - task: AzureResourceManagerTemplateDeployment@3
-      inputs:
-        deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'Azure DevOps 2024 (8b4c1959-38e7-4bd8-8830-1aaf982c36fb)'
-        subscriptionId: '8b4c1959-38e7-4bd8-8830-1aaf982c36fb5'
-        action: 'Create Or Update Resource Group'
-        resourceGroupName: 'azure-devops-2024'
-        location: 'West Europe'
-        templateLocation: 'Linked artifact'
-        csmFile: '$(System.ArtifactsDirectory)/**/WebAppWithSlots-Windows.json'
-        csmParametersFile: '$(System.ArtifactsDirectory)/**/azuredeploy.parameters.json'
-        overrideParameters: '-appName bnkYAML'
-        deploymentMode: 'Incremental'
+#     - task: AzureResourceManagerTemplateDeployment@3
+#       inputs:
+#         deploymentScope: 'Resource Group'
+#         azureResourceManagerConnection: 'Azure DevOps 2024 (8b4c1959-38e7-4bd8-8830-1aaf982c36fb)'
+#         subscriptionId: '8b4c1959-38e7-4bd8-8830-1aaf982c36fb5'
+#         action: 'Create Or Update Resource Group'
+#         resourceGroupName: 'azure-devops-2024'
+#         location: 'West Europe'
+#         templateLocation: 'Linked artifact'
+#         csmFile: '$(System.ArtifactsDirectory)/**/WebAppWithSlots-Windows.json'
+#         csmParametersFile: '$(System.ArtifactsDirectory)/**/azuredeploy.parameters.json'
+#         overrideParameters: '-appName bnkYAML'
+#         deploymentMode: 'Incremental'
 
-    - task: AzureRmWebAppDeployment@4
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'Azure DevOps 2024 (8b4c1959-38e7-4bd8-8830-1aaf982c36fb)'
-        appType: 'webApp'
-        WebAppName: 'bnkYAML'
-        packageForLinux: '$(System.ArtifactsDirectory)/**/OldDadApp.zip'
+#     - task: AzureRmWebAppDeployment@4
+#       inputs:
+#         ConnectionType: 'AzureRM'
+#         azureSubscription: 'Azure DevOps 2024 (8b4c1959-38e7-4bd8-8830-1aaf982c36fb)'
+#         appType: 'webApp'
+#         WebAppName: 'bnkYAML'
+#         packageForLinux: '$(System.ArtifactsDirectory)/**/OldDadApp.zip'
