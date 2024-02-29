@@ -69,11 +69,11 @@ stages:
     - task: AzureResourceManagerTemplateDeployment@3
       inputs:
         deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'FY20-ImaDemo (b8c7d821-4fbb-4089-8978-b966512a6a45)'
-        subscriptionId: 'b8c7d821-4fbb-4089-8978-b966512a6a45'
+        azureResourceManagerConnection: 'Azure DevOps 2024 (8b4c1959-38e7-4bd8-8830-1aaf982c36fb)'
+        subscriptionId: '8b4c1959-38e7-4bd8-8830-1aaf982c36fb5'
         action: 'Create Or Update Resource Group'
-        resourceGroupName: 'lz-yaml'
-        location: 'Central US'
+        resourceGroupName: 'azure-devops-2024'
+        location: 'West Europe'
         templateLocation: 'Linked artifact'
         csmFile: '$(System.ArtifactsDirectory)/**/WebAppWithSlots-Windows.json'
         csmParametersFile: '$(System.ArtifactsDirectory)/**/azuredeploy.parameters.json'
@@ -83,7 +83,7 @@ stages:
     - task: AzureRmWebAppDeployment@4
       inputs:
         ConnectionType: 'AzureRM'
-        azureSubscription: 'FY20-ImaDemo (b8c7d821-4fbb-4089-8978-b966512a6a45)'
+        azureSubscription: 'Azure DevOps 2024o (8b4c1959-38e7-4bd8-8830-1aaf982c36fb)'
         appType: 'webApp'
         WebAppName: 'bnkYAML'
         packageForLinux: '$(System.ArtifactsDirectory)/**/OldDadApp.zip'
