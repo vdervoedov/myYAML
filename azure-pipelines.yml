@@ -83,7 +83,7 @@ stages:
     - task: AzureRmWebAppDeployment@4
       inputs:
         ConnectionType: 'AzureRM'
-        azureSubscription: 'Azure DevOps 2024o (8b4c1959-38e7-4bd8-8830-1aaf982c36fb)'
+        azureSubscription: 'Azure DevOps 2024 (8b4c1959-38e7-4bd8-8830-1aaf982c36fb)'
         appType: 'webApp'
         WebAppName: 'bnkYAML'
         packageForLinux: '$(System.ArtifactsDirectory)/**/OldDadApp.zip'
